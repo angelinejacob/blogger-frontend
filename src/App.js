@@ -1,40 +1,34 @@
 import React, { Component } from 'react'
 import './App.css';
 import NewUser from './users/createUser'
+import axios from 'axios';
 
 class App extends Component{
   constructor(props){
     super()
     this.state = {
-      img_url: ''
+      userId: '5fd77c94214eb7fbc7a3782f',
+      currentUser: {}
     }
   }
-  submitPhoto = (e) => {
-    e.preventDefault()
-    console.log(e)
-    let file = e.target[0].files[0]
-    let reader = new FileReader()
-    let url = reader.readAsDataURL(file)
 
-    reader.onloadend = function (e) {
+  componentDidMount(){
+    axios.get(`http://localhost:3000/users/${this.state.userId}`)
+    .then(response => {
+      console.log(response.data)
       this.setState({
-        img_url: [reader.result]
+        currentUser: response.data
       })
-    }.bind(this)
-
-    console.log('URL: ' ,url)
-
+    })
+    .catch((error) => {
+      console.log("ERROR GETTING USER INFO - REACT >>> ", error)
+    })
   }
+  
   
   render(){
     return(
       <>
-      {/* <h1>Hello World!</h1>
-      <form onSubmit={this.submitPhoto}>
-        <input type="file"></input>
-        <input type="submit" value="Submit"/>
-      </form>
-      <img src={this.state.img_url} alt="uploaded text"/> */}
       <NewUser/>
       </>
     )
