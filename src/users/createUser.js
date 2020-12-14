@@ -17,16 +17,14 @@ class NewUser extends Component{
 
     createUser = (e) => {
         e.preventDefault()
+        /**
+         * BELOW IMPLEMENTATION USED WHEN TRYING TO UPLOAD FILE
+         */
         let formData = new FormData()
 
         // add form fields to form data object
-        for(let i = 0; i < 5; i++){
-            if(e.target[i].name === "img"){
-                formData.append(e.target[i].name, e.target[i].files[0])
-            }
-            else{
+        for(let i = 0; i < 5; i++){    
                 formData.append(e.target[i].name, e.target[i].value)
-            }
         }
 
         // test that form data is being populated
@@ -46,32 +44,6 @@ class NewUser extends Component{
         .catch((error) => {
             console.log("ERROR OCCURED: ", error)
         })
-
-        // make axios api call to express backend
-        // axios.post('http://localhost:3000/users/', formData, {
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data'
-        //     }
-        // })
-        // .then((response) => {
-        //     console.log("successfully sent", response)
-        // })
-        // .catch((error) => {
-        //     console.log("ERROR OCCURED: ", error)
-        // })
-
-        // axios.get('http://localhost:3000/users/')
-        // .then((response) => {
-        //     console.log(response)
-        // })
-        // .catch((error) => {
-        //     console.log("Error occured: ", error)
-        // })
-        
-        // console.log('Create User event', e.target[0])
-        // console.log('Create User event', e)
-        // console.log('Create User event', e.target.length)
-        // console.log('Create User event', typeof(e.target))
         
     }
 
@@ -111,30 +83,43 @@ class NewUser extends Component{
                             onChange={this.handleEditChange}
                             value={this.state.name}/>
 
+                <br></br>
                 <Label>Username</Label>
                 <Form.Input type="text" 
                             name="username"
                             onChange={this.handleEditChange}
                             value={this.state.username}/>
 
+                <br></br>
                 <Label>Password</Label>
                 <Form.Input type="password" 
                             name="password"
                             onChange={this.handleEditChange}
                             value={this.state.password}/>
 
+                <br></br>
                 <Label>Bio</Label>
                 <Form.Input type="textarea" 
                             name="bio"
                             onChange={this.handleEditChange}
                             value={this.state.bio}/>
 
-                <Label>Upload Image</Label>
+                {/* <Label>Upload Image</Label>
                 <Form.Input type="file" name="img" onChange={this.addPhotoPreview}/>
                 <div>
-                    <img src={this.state.img} alt="uploaded" id="photo-preview"/>
-                </div>
+                    <img src="https://scontent-lga3-2.xx.fbcdn.net/v/t1.0-9/66833932_1332691630221289_681358881762312192_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=bIcD_SSkqHoAX-tjmg8&_nc_ht=scontent-lga3-2.xx&oh=4048d2e15767f28a5908a286fb6b6c2b&oe=5FFDADD6" alt="uploaded" id="photo-preview"/>
+                </div> */}
+                <br></br>
+                <Label>Image URL</Label>
+                <Form.Input type="text"
+                            name="img"
+                            onChange={this.handleEditChange}
+                            value={this.state.img}></Form.Input>
 
+                <div>
+                    <img src={this.state.img} alt="uploaded" id="photo-preview"/>
+                </div>            
+                <br></br>
                 <Form.Input type="submit" value="Create User"/>
             </Form>
             </>
