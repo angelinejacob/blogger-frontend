@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Label, Header } from 'semantic-ui-react';
 import '../App.css'
+import axios from 'axios'
 
 class NewUser extends Component{
     constructor(props){
@@ -18,6 +19,7 @@ class NewUser extends Component{
         e.preventDefault()
         let formData = new FormData()
 
+        // add form fields to form data object
         for(let i = 0; i < 5; i++){
             if(e.target[i].name === "img"){
                 formData.append(e.target[i].name, e.target[i].files[0])
@@ -31,6 +33,40 @@ class NewUser extends Component{
         for(var pair of formData.entries()){
             console.log(pair[0]+ ", " + pair[1])
         }
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/users/',
+            data: formData,
+            headers: {'Content-Type': 'multipart/form-data'}
+        })
+        .then((response) => {
+            console.log("successfully sent", response)
+        })
+        .catch((error) => {
+            console.log("ERROR OCCURED: ", error)
+        })
+
+        // make axios api call to express backend
+        // axios.post('http://localhost:3000/users/', formData, {
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data'
+        //     }
+        // })
+        // .then((response) => {
+        //     console.log("successfully sent", response)
+        // })
+        // .catch((error) => {
+        //     console.log("ERROR OCCURED: ", error)
+        // })
+
+        // axios.get('http://localhost:3000/users/')
+        // .then((response) => {
+        //     console.log(response)
+        // })
+        // .catch((error) => {
+        //     console.log("Error occured: ", error)
+        // })
         
         // console.log('Create User event', e.target[0])
         // console.log('Create User event', e)
