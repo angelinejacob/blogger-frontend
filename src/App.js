@@ -3,12 +3,13 @@ import './App.css';
 import NewUser from './users/createUser'
 import UserDetails from './users/userDetails'
 import axios from 'axios';
+import { Route, Link } from 'react-router-dom'
 
 class App extends Component{
   constructor(props){
     super()
     this.state = {
-      userId: '5fd77c94214eb7fbc7a3782f',
+      userId: '5fd8399b62640017b44144f4',
       currentUser: {}
     }
   }
@@ -49,8 +50,14 @@ class App extends Component{
   render(){
     return(
       <>
-      <UserDetails user={this.state.currentUser} editDetails={this.editUser}/>
-      {/* <NewUser/> */}
+      <Link to="/newUser"> Register </Link>
+      <Link to="/userDetails">My Settings</Link>
+      <Route exact path="/newUser">
+        <NewUser/>
+      </Route>
+      <Route exact path="/userDetails">
+        <UserDetails user={this.state.currentUser} editDetails={this.editUser}/>
+      </Route>
       </>
     )
   }
