@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Menu } from 'semantic-ui-react'
 import EditUserModal from './editUserModal'
 
 class UserDetails extends Component{
@@ -37,16 +37,38 @@ class UserDetails extends Component{
           })
           this.props.editDetails(this.state.userToEdit)
       }
+
+      cancel = (e) => {
+          this.setState({
+              openEditModal: false
+          })
+      }
     render(){
         return(
             <>
-            <h1>{this.props.user.name}</h1>
-            <img id="user-photo-preview" src={this.props.user.img}/>
-            <h4>{this.props.user.bio}</h4>
+            <div className="user-page">
+                <div className="action-menu">
+                    <Menu text>
+                        <Menu.Item
+                            name="editAccount"
+                            onClick={() => this.setState({ openEditModal: true, userToEdit: {...this.props.user} })}/>
+                        <Menu.Item
+                            name="deleteAccount"/>
+                        <Menu.Item
+                            name="newPost"/>
+                    </Menu>
+                </div>
+                <div id="user-details">
+                    <h1>{this.props.user.name}</h1>
+                    <img id="user-photo-preview" src={this.props.user.img}/>
+                    <div id="bio">
+                        <h6>{this.props.user.bio}</h6>
+                    </div>
+                </div>
+            </div>
 
-            <Button onClick={() => this.setState({ openEditModal: true, userToEdit: {...this.props.user} })}>Edit My Account</Button>
-            <EditUserModal open={this.state.openEditModal} handleEditChange={this.handleEditChange} userToEdit={this.state.userToEdit} closeAndEdit={this.closeAndEdit}/>
-            <Button>Delete My Account</Button>
+            {/* <Button onClick={() => this.setState({ openEditModal: true, userToEdit: {...this.props.user} })}>Edit My Account</Button> */}
+            <EditUserModal open={this.state.openEditModal} handleEditChange={this.handleEditChange} userToEdit={this.state.userToEdit} closeAndEdit={this.closeAndEdit} cancel={this.cancel}/>
 
             <h3>My Blogs</h3>
             {/* myBlogs from above will go here */}

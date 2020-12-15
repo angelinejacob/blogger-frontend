@@ -54,6 +54,9 @@ class EditUserModal extends Component{
                         <Button color="green" type="submit" onClick={this.props.closeAndEdit}>
                         Edit Settings
                         </Button>
+                        <Button color="black" onClick={this.props.cancel}>
+                            Cancel
+                        </Button>
                     </Modal.Actions>
                 </Modal.Content>
             </Modal>
