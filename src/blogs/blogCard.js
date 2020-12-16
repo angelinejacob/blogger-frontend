@@ -20,13 +20,18 @@ class BlogCard extends Component{
         this.props.handleLike(this.props.blog._id, newLikes)
     }
 
+    deleteBlog = (e) => {
+        e.stopPropagation()
+        this.props.deleteBlog(this.props.blog._id)
+    }
+
     render(){
         let canEdit = <></>
         if(this.props.canEdit){
             canEdit = 
                 <Card.Content>
                     <Button>Edit</Button>
-                    <Button>Delete</Button>
+                    <Button onClick={this.deleteBlog}>Delete</Button>
                 </Card.Content>
             
         }

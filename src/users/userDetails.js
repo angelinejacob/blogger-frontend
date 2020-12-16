@@ -109,7 +109,12 @@ class UserDetails extends Component{
         // })
         let blogs = <h3>Click on Link to View Your Blogs</h3>
         if(this.state.blogs.length > 0){
-            blogs = <BlogContainer handleLike={this.props.handleLike} currentUser={this.props.user} blogs={this.props.blogs} addComment={this.props.addComment}/>
+            blogs = <BlogContainer 
+                        handleLike={this.props.handleLike} 
+                        currentUser={this.props.user} 
+                        blogs={this.props.blogs} 
+                        addComment={this.props.addComment}
+                        deleteBlog={this.props.deleteBlog}/>
         }
 
         return(

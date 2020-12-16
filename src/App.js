@@ -135,6 +135,22 @@ class App extends Component{
     })
   }
 
+  deleteBlog = (blogId) => {
+    // console.log(blogId, "blog ID to delete from APP")
+
+    axios({
+      method: 'delete',
+      url: `http://localhost:3000/blogs/${this.state.userId}/${blogId}`
+    })
+    .then((response) => {
+      // update state
+      this.getUpdatedUserInfo()
+    })
+    .catch((error) => {
+      console.log(error, "error while deleting blog")
+    })
+  }
+
   render(){
     let userDetails = <h1>No Details</h1>
     if(Object.keys(this.state.currentUser).length === 0){
@@ -146,7 +162,8 @@ class App extends Component{
                       editDetails={this.editUser} 
                       createNewBlog={this.createNewBlog} 
                       handleLike={this.handleLike}
-                      addComment={this.addComment}/>
+                      addComment={this.addComment}
+                      deleteBlog={this.deleteBlog}/>
     }
     return(
       <>
