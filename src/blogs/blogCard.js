@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Button } from 'semantic-ui-react'
 import ReadBlogModal from './readBlogModal'
 
 class BlogCard extends Component{
@@ -15,6 +15,15 @@ class BlogCard extends Component{
         })
     }
     render(){
+        let canEdit = <></>
+        if(this.props.canEdit){
+            canEdit = 
+                <Card.Content>
+                    <Button>Edit</Button>
+                    <Button>Delete</Button>
+                </Card.Content>
+            
+        }
         
         return(
             <>
@@ -29,9 +38,10 @@ class BlogCard extends Component{
                     </Card.Description>
 
                 </Card.Content>
+                {canEdit}
                 <Card.Content extra>
                     <a>
-                        <Icon name="like"/>
+                        <Icon name="like" color={this.props.isLiked ? "blue":""}/>
                         {this.props.blog.likes}
                     </a>
                     {"    "}
@@ -39,6 +49,7 @@ class BlogCard extends Component{
                         <Icon name="comments"/>
                         {this.props.blog.comments.length}
                     </a>
+                    
                 </Card.Content>
 
             </Card>

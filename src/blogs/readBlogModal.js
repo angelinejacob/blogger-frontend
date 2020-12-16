@@ -44,7 +44,7 @@ class ReadBlogModal extends Component{
                     </Comment.Group>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button color="google plus">Like</Button>
+                    <Button>Like</Button>
                     <Button color="black" onClick={this.props.closeModal}>Close</Button>
                 </Modal.Actions>
             </Modal>

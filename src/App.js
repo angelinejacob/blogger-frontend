@@ -83,9 +83,7 @@ class App extends Component{
       console.log("response from new blog >> ", response.data)
 
       // update state
-      this.setState({
-        currentUser: response.data
-      })
+      this.getUpdatedUserInfo()
     })
     .catch((error) => {
       console.log("error while making new blog >> ", error)
