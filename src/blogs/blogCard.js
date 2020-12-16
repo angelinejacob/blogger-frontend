@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import { Card, Icon } from 'semantic-ui-react'
-import axios from 'axios'
+import ReadBlogModal from './readBlogModal'
 
 class BlogCard extends Component{
+    constructor(){
+        super()
+        this.state = {
+            openBlog: false
+        }
+    }
+    closeModal = (e) => {
+        this.setState({
+            openBlog: false
+        })
+    }
     render(){
         
         return(
             <>
-            <Card>
+            <Card onClick={() => this.setState({ openBlog: true })}>
                 <Card.Content>
                     <Card.Header>{this.props.blog.title}</Card.Header>
                     <Card.Meta>
@@ -31,6 +42,8 @@ class BlogCard extends Component{
                 </Card.Content>
 
             </Card>
+
+            <ReadBlogModal blog={this.props.blog} open={this.state.openBlog} currentUser={this.props.currentUser} closeModal={this.closeModal}/>
             </>
         )
     }

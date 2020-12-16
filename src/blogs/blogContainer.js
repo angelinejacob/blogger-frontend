@@ -17,7 +17,7 @@ class BlogContainer extends Component{
             }
 
             console.log(isLiked, canEdit, blog._id)
-            return <BlogCard canEdit={canEdit} isLiked={isLiked} blog={blog} key={blog._id}/>
+            return <BlogCard currentUser={this.props.currentUser} canEdit={canEdit} isLiked={isLiked} blog={blog} key={blog._id}/>
 
         })
         return(
