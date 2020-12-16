@@ -10,15 +10,42 @@ class App extends Component{
     super()
     this.state = {
       userId: '5fd8399b62640017b44144f4',
-      currentUser: {}
+      currentUser: {},
+      allBlogs: [],
+      blogs: [],
+      favoriteBlogs: []
     }
   }
 
   componentDidMount(){
     axios.get(`http://localhost:3000/users/${this.state.userId}`)
     .then(response => {
+      console.log(response.data)
+      let user = response.data.foundUser
+      let blogs = response.data.blogs
+      let favoriteBlogs = response.data.favoriteBlogs
       this.setState({
-        currentUser: response.data
+        currentUser: user,
+        blogs: blogs,
+        favoriteBlogs: favoriteBlogs
+      })
+    })
+    .catch((error) => {
+      console.log("ERROR GETTING USER INFO - REACT >>> ", error)
+    })
+  }
+
+  getUpdatedUserInfo = () => {
+    axios.get(`http://localhost:3000/users/${this.state.userId}`)
+    .then(response => {
+      console.log(response.data)
+      let user = response.data.foundUser
+      let blogs = response.data.blogs
+      let favoriteBlogs = response.data.favoriteBlogs
+      this.setState({
+        currentUser: user,
+        blogs: blogs,
+        favoriteBlogs: favoriteBlogs
       })
     })
     .catch((error) => {
@@ -37,9 +64,7 @@ class App extends Component{
         })
         .then((response) => {
             console.log("successfully sent", response.data)
-            this.setState({
-              currentUser: response.data
-            })
+            this.getUpdatedUserInfo()
         })
         .catch((error) => {
             console.log("ERROR OCCURED: ", error)
@@ -72,7 +97,7 @@ class App extends Component{
     if(Object.keys(this.state.currentUser).length === 0){
       // do nothing
     }else {
-      userDetails = <UserDetails user={this.state.currentUser} editDetails={this.editUser} createNewBlog={this.createNewBlog}/>
+      userDetails = <UserDetails user={this.state.currentUser} blogs={this.state.blogs} editDetails={this.editUser} createNewBlog={this.createNewBlog}/>
     }
     return(
       <>

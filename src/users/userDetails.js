@@ -6,8 +6,8 @@ import CreateBlogModal from '../blogs/createBlogModal'
 import axios from 'axios'
 
 class UserDetails extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             openEditModal: false,
             userToEdit: {
@@ -24,7 +24,8 @@ class UserDetails extends Component{
                 tags: ''
             }, 
             openNewBlogModal: false,
-            blogs: []
+            blogs: [],
+            currentUser: props.user
         }
     }
     
@@ -53,6 +54,7 @@ class UserDetails extends Component{
               openEditModal: false
           })
           this.props.editDetails(this.state.userToEdit)
+          this.getBlogs()
       }
 
       cancel = (e) => {
@@ -78,6 +80,9 @@ class UserDetails extends Component{
       }
 
       getBlogs = () => {
+          this.setState({
+              blogs: []
+          })
           this.props.user.blogs.forEach((blog) => {
             axios({
                 method: 'get',
@@ -104,7 +109,7 @@ class UserDetails extends Component{
         // })
         let blogs = <h3>Click on Link to View Your Blogs</h3>
         if(this.state.blogs.length > 0){
-            blogs = <BlogContainer currentUser={this.props.user} blogs={this.state.blogs}/>
+            blogs = <BlogContainer currentUser={this.props.user} blogs={this.props.blogs}/>
         }
 
         return(
