@@ -90,12 +90,34 @@ class App extends Component{
     })
   }
 
+  handleLike = (blogId, newLikes) => {
+    console.log(blogId, newLikes, "from APP")
+
+    // setup body of request
+    let formData = new FormData()
+    formData.append('likes', newLikes)
+
+    // make API call
+    axios({
+      method:'put',
+      url: `http://localhost:3000/blogs/${this.state.userId}/${blogId}`,
+      data: formData
+    })
+    .then((response) => {
+      // update state
+      this.getUpdatedUserInfo()
+    })
+    .catch((error) => {
+      console.log(error, "error from changing like")
+    })
+  }
+
   render(){
     let userDetails = <h1>No Details</h1>
     if(Object.keys(this.state.currentUser).length === 0){
       // do nothing
     }else {
-      userDetails = <UserDetails user={this.state.currentUser} blogs={this.state.blogs} editDetails={this.editUser} createNewBlog={this.createNewBlog}/>
+      userDetails = <UserDetails user={this.state.currentUser} blogs={this.state.blogs} editDetails={this.editUser} createNewBlog={this.createNewBlog} handleLike={this.handleLike}/>
     }
     return(
       <>

@@ -2,17 +2,31 @@ import React, { Component } from 'react'
 import { Modal, Form, Button, Comment, Header } from 'semantic-ui-react';
 
 class ReadBlogModal extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            isLiked: props.isLiked
+        }
+    }
+
+    handleLike = () => {
+        let newLikes = 0
+        if(this.state.isLiked){
+            this.setState({
+                isLiked: false
+            })
+            newLikes = this.props.blog.likes -= 1
+        }
+        else{
+            this.setState({
+                isLiked: true
+            })
+            newLikes = this.props.blog.likes += 1
+        }
+        this.props.handleLike(newLikes)
+    }
+
     render(){
-        // console.log(this.props.blog.comments, this.props.blog.comments.length)
-        // let comments = <h5>No Comments</h5>
-        // if(this.props.blog.comments.lenth > 0){
-        //     comments = this.props.blog.comments.map((comment) => {
-        //         return <div>
-        //             <h5>{comment.author}</h5>
-        //             <p>{comment.content}</p>
-        //         </div>
-        //     })
-        // }
         return(
             <>
             <Modal open={this.props.open}>
@@ -44,7 +58,7 @@ class ReadBlogModal extends Component{
                     </Comment.Group>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button>Like</Button>
+                    <Button color={this.state.isLiked ? "blue":""} onClick={this.handleLike}>Like</Button>
                     <Button color="black" onClick={this.props.closeModal}>Close</Button>
                 </Modal.Actions>
             </Modal>

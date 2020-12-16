@@ -14,6 +14,12 @@ class BlogCard extends Component{
             openBlog: false
         })
     }
+
+    handleLike = (newLikes) => {
+        console.log("new like count", newLikes)
+        this.props.handleLike(this.props.blog._id, newLikes)
+    }
+
     render(){
         let canEdit = <></>
         if(this.props.canEdit){
@@ -54,7 +60,13 @@ class BlogCard extends Component{
 
             </Card>
 
-            <ReadBlogModal blog={this.props.blog} open={this.state.openBlog} currentUser={this.props.currentUser} closeModal={this.closeModal}/>
+            <ReadBlogModal 
+            blog={this.props.blog} 
+            open={this.state.openBlog} 
+            currentUser={this.props.currentUser} 
+            closeModal={this.closeModal} 
+            isLiked={this.props.isLiked}
+            handleLike={this.handleLike}/>
             </>
         )
     }
