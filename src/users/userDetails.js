@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Menu } from 'semantic-ui-react'
 import EditUserModal from './editUserModal'
-import BlogCard from '../blogs/blogCard'
+import BlogContainer from '../blogs/blogContainer'
 import CreateBlogModal from '../blogs/createBlogModal'
 
 class UserDetails extends Component{
@@ -77,9 +77,9 @@ class UserDetails extends Component{
 
     render(){
         // Will have to map individual blogs to a Blog Container and then display it below
-        const myBlogs = this.props.user.blogs.map((blog) => {
-            return <BlogCard user={this.props.user} blog={blog}/>
-        })
+        // const myBlogs = this.props.user.blogs.map((blog) => {
+        //     return <BlogCard user={this.props.user} blog={blog}/>
+        // })
 
         return(
             <>
@@ -110,7 +110,7 @@ class UserDetails extends Component{
             <CreateBlogModal open={this.state.openNewBlogModal} cancelPost={this.cancelPost} createPost={this.createPost} newBlog={this.state.newBlog} handleEditChange={this.handleEditChangeBlog}/>
 
             <h3>My Blogs</h3>
-            {myBlogs}
+            <BlogContainer currentUser={this.props.user} blogs={this.props.user.blogs}/>
 
             </>
         )
