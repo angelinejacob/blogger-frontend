@@ -112,12 +112,41 @@ class App extends Component{
     })
   }
 
+  addComment = (blogId, author, content) => {
+    console.log(blogId, author, content, "From APP")
+
+    // make request body
+    let formData = new FormData()
+    formData.append('author', author)
+    formData.append('content', content)
+
+    // make callout
+    axios({
+      method: 'post',
+      url: `http://localhost:3000/blogs/comment/${blogId}`,
+      data: formData
+    })
+    .then((response) => {
+      // update state
+      this.getUpdatedUserInfo()
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
   render(){
     let userDetails = <h1>No Details</h1>
     if(Object.keys(this.state.currentUser).length === 0){
       // do nothing
     }else {
-      userDetails = <UserDetails user={this.state.currentUser} blogs={this.state.blogs} editDetails={this.editUser} createNewBlog={this.createNewBlog} handleLike={this.handleLike}/>
+      userDetails = <UserDetails 
+                      user={this.state.currentUser} 
+                      blogs={this.state.blogs} 
+                      editDetails={this.editUser} 
+                      createNewBlog={this.createNewBlog} 
+                      handleLike={this.handleLike}
+                      addComment={this.addComment}/>
     }
     return(
       <>

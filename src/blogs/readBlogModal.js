@@ -5,10 +5,16 @@ class ReadBlogModal extends Component{
     constructor(props){
         super(props)
         this.state = {
-            isLiked: props.isLiked
+            isLiked: props.isLiked, 
+            comment: ''
         }
     }
 
+    handleEditChange = (e) => {
+        this.setState({
+            comment: e.currentTarget.value
+        })
+    }
     handleLike = () => {
         let newLikes = 0
         if(this.state.isLiked){
@@ -24,6 +30,14 @@ class ReadBlogModal extends Component{
             newLikes = this.props.blog.likes += 1
         }
         this.props.handleLike(newLikes)
+    }
+
+    addComment = (e) => {
+        // console.log(e)
+        this.props.addComment(this.props.blog._id, this.props.currentUser.name, this.state.comment)
+        this.setState({
+            comment: ""
+        })
     }
 
     render(){
@@ -51,9 +65,9 @@ class ReadBlogModal extends Component{
                         type="text"
                         name="author"
                         value={this.props.currentUser.name}
-                        disabled/>
-                        <Form.TextArea name="content"/>
-                        <Button>Add Comment</Button>
+                        />
+                        <Form.TextArea name="content" onChange={this.handleEditChange} value={this.state.comment}/>
+                        <Button onClick={this.addComment}>Add Comment</Button>
                     </Form>
                     </Comment.Group>
                 </Modal.Content>

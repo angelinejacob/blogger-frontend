@@ -66,7 +66,8 @@ class BlogCard extends Component{
             currentUser={this.props.currentUser} 
             closeModal={this.closeModal} 
             isLiked={this.props.isLiked}
-            handleLike={this.handleLike}/>
+            handleLike={this.handleLike}
+            addComment={this.props.addComment}/>
             </>
         )
     }
