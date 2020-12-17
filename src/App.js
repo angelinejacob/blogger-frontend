@@ -26,10 +26,12 @@ class App extends Component{
       let user = response.data.foundUser
       let blogs = response.data.blogs
       let favoriteBlogs = response.data.favoriteBlogs
+      let allBlogs = response.data.allBlogs
       this.setState({
         currentUser: user,
         blogs: blogs,
-        favoriteBlogs: favoriteBlogs
+        favoriteBlogs: favoriteBlogs,
+        allBlogs: allBlogs
       })
     })
     .catch((error) => {
