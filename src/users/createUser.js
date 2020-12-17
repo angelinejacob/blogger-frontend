@@ -34,7 +34,7 @@ class NewUser extends Component{
 
         axios({
             method: 'post',
-            url: 'http://localhost:3000/users/',
+            url: process.env.REACT_APP_EXPRESS_API_URL + `/users/`,
             data: formData,
             headers: {'Content-Type': 'multipart/form-data'}
         })

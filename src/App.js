@@ -11,7 +11,7 @@ class App extends Component{
   constructor(props){
     super()
     this.state = {
-      userId: '5fd8399b62640017b44144f4',
+      userId: '5fdbaaeb7ff78806e61a52f7',
       currentUser: {},
       allBlogs: [],
       blogs: [],
@@ -20,7 +20,7 @@ class App extends Component{
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:3000/users/${this.state.userId}`)
+    axios.get(process.env.REACT_APP_EXPRESS_API_URL + `/users/${this.state.userId}`)
     .then(response => {
       console.log(response.data)
       let user = response.data.foundUser
@@ -40,7 +40,7 @@ class App extends Component{
   }
 
   getUpdatedUserInfo = () => {
-    axios.get(`http://localhost:3000/users/${this.state.userId}`)
+    axios.get(process.env.REACT_APP_EXPRESS_API_URL + `/users/${this.state.userId}`)
     .then(response => {
       console.log(response.data)
       let user = response.data.foundUser
@@ -65,7 +65,7 @@ class App extends Component{
 
         axios({
           method: 'put',
-          url: `http://localhost:3000/users/${this.state.userId}`,
+          url: process.env.REACT_APP_EXPRESS_API_URL + `/users/${this.state.userId}`,
           data: editedUser,
         })
         .then((response) => {
@@ -82,7 +82,7 @@ class App extends Component{
 
     axios({
       method: 'post',
-      url: `http://localhost:3000/blogs/${this.state.userId}`,
+      url: process.env.REACT_APP_EXPRESS_API_URL + `/blogs/${this.state.userId}`,
       data: blog,
     })
     .then((response) => {
@@ -106,7 +106,7 @@ class App extends Component{
     // make API call
     axios({
       method:'put',
-      url: `http://localhost:3000/blogs/${this.state.userId}/${blogId}`,
+      url: process.env.REACT_APP_EXPRESS_API_URL + `/blogs/${this.state.userId}/${blogId}`,
       data: formData
     })
     .then((response) => {
@@ -129,7 +129,7 @@ class App extends Component{
     // make callout
     axios({
       method: 'post',
-      url: `http://localhost:3000/blogs/comment/${blogId}`,
+      url: process.env.REACT_APP_EXPRESS_API_URL + `/blogs/comment/${blogId}`,
       data: formData
     })
     .then((response) => {
@@ -146,7 +146,7 @@ class App extends Component{
 
     axios({
       method: 'delete',
-      url: `http://localhost:3000/blogs/${this.state.userId}/${blogId}`
+      url: process.env.REACT_APP_EXPRESS_API_URL + `/blogs/${this.state.userId}/${blogId}`
     })
     .then((response) => {
       // update state
@@ -163,7 +163,7 @@ class App extends Component{
     // make API callout
     axios({
       method: 'put',
-      url: `http://localhost:3000/blogs/${this.state.userId}/${blog._id}`,
+      url: process.env.REACT_APP_EXPRESS_API_URL + `/blogs/${this.state.userId}/${blog._id}`,
       data: blog
     })
     .then((response) => {

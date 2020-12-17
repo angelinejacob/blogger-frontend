@@ -86,7 +86,7 @@ class UserDetails extends Component{
           this.props.user.blogs.forEach((blog) => {
             axios({
                 method: 'get',
-                url: `http://localhost:3000/blogs/${blog._id}`
+                url: process.env.REACT_APP_EXPRESS_API_URL + `/blogs/${blog._id}`
             })
             .then((response) => {
                 let blogs = this.state.blogs
