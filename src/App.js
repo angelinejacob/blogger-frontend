@@ -186,8 +186,9 @@ class App extends Component{
     }
     return(
       <>
-      <Link to="/newUser"> Register </Link>
-      <Link to="/userDetails">My Settings</Link>
+      <Link to="/newUser"> Register </Link> {"  |  "} 
+      <Link to="/userDetails">My Settings</Link> {"  |  "} 
+      <Link to="/favorites">My Favorites</Link>
       <Route exact path="/newUser">
         <NewUser/>
       </Route>
