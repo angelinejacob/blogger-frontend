@@ -115,7 +115,8 @@ class UserDetails extends Component{
                         blogs={this.props.blogs} 
                         addComment={this.props.addComment}
                         deleteBlog={this.props.deleteBlog}
-                        editBlogPost={this.props.editBlogPost}/>
+                        editBlogPost={this.props.editBlogPost}
+                        className="blog-card"/>
         }
 
         return(
@@ -150,7 +151,9 @@ class UserDetails extends Component{
             <CreateBlogModal open={this.state.openNewBlogModal} cancelPost={this.cancelPost} createPost={this.createPost} newBlog={this.state.newBlog} handleEditChange={this.handleEditChangeBlog}/>
 
             <h1>My Blogs</h1>
-            {blogs}
+            <div className="blog-container">
+                {blogs}
+            </div>
 
             </>
         )

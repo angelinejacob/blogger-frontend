@@ -75,7 +75,7 @@ class BlogCard extends Component{
         
         return(
             <>
-            <Card onClick={() => this.setState({ openBlog: true })}>
+            <Card onClick={() => this.setState({ openBlog: true })} className="blog-card">
                 <Card.Content>
                     <Card.Header>{this.props.blog.title}</Card.Header>
                     <Card.Meta>
