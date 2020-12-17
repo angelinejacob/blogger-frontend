@@ -5,6 +5,7 @@ import UserDetails from './users/userDetails'
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom'
 import FavoriteBlogs from './blogs/favoriteBlogs'
+import AllBlogs from './blogs/allBlogs'
 
 class App extends Component{
   constructor(props){
@@ -43,10 +44,12 @@ class App extends Component{
       let user = response.data.foundUser
       let blogs = response.data.blogs
       let favoriteBlogs = response.data.favoriteBlogs
+      let allBlogs = response.data.allBlogs
       this.setState({
         currentUser: user,
         blogs: blogs,
-        favoriteBlogs: favoriteBlogs
+        favoriteBlogs: favoriteBlogs,
+        allBlogs: allBlogs
       })
     })
     .catch((error) => {
@@ -196,11 +199,22 @@ class App extends Component{
                   deleteBlog={this.deleteBlog}
                   editBlogPost={this.editBlogPost}/>
     }
+    let all_blogs = <h1>No Blogs to Display</h1>
+    if(this.state.allBlogs.length > 0){
+      all_blogs = <AllBlogs
+                  user={this.state.currentUser} 
+                  blogs={this.state.allBlogs} 
+                  handleLike={this.handleLike}
+                  addComment={this.addComment}
+                  deleteBlog={this.deleteBlog}
+                  editBlogPost={this.editBlogPost}/>
+    }
     return(
       <>
       <Link to="/newUser"> Register </Link> {"  |  "} 
       <Link to="/userDetails">My Settings</Link> {"  |  "} 
-      <Link to="/favorites">My Favorites</Link>
+      <Link to="/favorites">My Favorites</Link> {"  |  "} 
+      <Link to="/allblogs">All Blogs</Link>
       <Route exact path="/newUser">
         <NewUser/>
       </Route>
@@ -209,6 +223,9 @@ class App extends Component{
       </Route>
       <Route exact path="/favorites">
         {favorites}
+      </Route>
+      <Route exact path="/allblogs">
+        {all_blogs}
       </Route>
       </>
     )
