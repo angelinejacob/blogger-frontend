@@ -11,7 +11,7 @@ class App extends Component{
   constructor(props){
     super()
     this.state = {
-      userId: '5fdbae9411debd001773561b',
+      userId: '5fd8399b62640017b44144f4',
       currentUser: {},
       allBlogs: [],
       blogs: [],
@@ -217,6 +217,7 @@ class App extends Component{
       <Link to="/userDetails">My Settings</Link> {"  |  "} 
       <Link to="/favorites">My Favorites</Link> {"  |  "} 
       <Link to="/allblogs">All Blogs</Link>
+      <h1>Welcome to Blogger!</h1>
       <Route exact path="/newUser">
         <NewUser/>
       </Route>
