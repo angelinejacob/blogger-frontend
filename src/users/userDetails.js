@@ -114,7 +114,8 @@ class UserDetails extends Component{
                         currentUser={this.props.user} 
                         blogs={this.props.blogs} 
                         addComment={this.props.addComment}
-                        deleteBlog={this.props.deleteBlog}/>
+                        deleteBlog={this.props.deleteBlog}
+                        editBlogPost={this.props.editBlogPost}/>
         }
 
         return(

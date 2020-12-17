@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { Card, Icon, Button } from 'semantic-ui-react'
 import ReadBlogModal from './readBlogModal'
+import EditBlogModal from './editBlogModal'
 
 class BlogCard extends Component{
     constructor(){
         super()
         this.state = {
-            openBlog: false
+            openBlog: false,
+            openEditBlogModal: false,
+            blogToEdit: {
+                title: '',
+                content: '',
+                tags: ''
+            }
         }
     }
     closeModal = (e) => {
@@ -25,12 +32,42 @@ class BlogCard extends Component{
         this.props.deleteBlog(this.props.blog._id)
     }
 
+    handleEditChange = (e) => {
+        console.log("inside handle edit change")
+        this.setState({
+          blogToEdit: {
+            ...this.state.blogToEdit,
+            [e.currentTarget.name]: e.currentTarget.value,
+          },
+        });
+      };
+
+
+      cancelEditBlog = (e) => { 
+        this.setState({
+              openEditBlogModal: false
+          })
+      }
+
+      openEditBlogModal = (e) => {
+        e.stopPropagation()
+        this.setState({ openEditBlogModal: true, blogToEdit: {...this.props.blog} })
+
+      }
+
+      editPost = (e) => {
+          this.setState({
+              openEditBlogModal: false
+          })
+          this.props.editBlogPost(this.state.blogToEdit)
+      }
+
     render(){
         let canEdit = <></>
         if(this.props.canEdit){
             canEdit = 
                 <Card.Content>
-                    <Button>Edit</Button>
+                    <Button onClick={this.openEditBlogModal}>Edit</Button>
                     <Button onClick={this.deleteBlog}>Delete</Button>
                 </Card.Content>
             
@@ -73,6 +110,14 @@ class BlogCard extends Component{
             isLiked={this.props.isLiked}
             handleLike={this.handleLike}
             addComment={this.props.addComment}/>
+
+            <EditBlogModal 
+            open={this.state.openEditBlogModal} 
+            blog={this.state.blogToEdit} 
+            handleEditChange={this.handleEditChange} 
+            cancel={this.cancelEditBlog} 
+            editPost={this.editPost}/>
+            
             </>
         )
     }

@@ -25,7 +25,8 @@ class BlogContainer extends Component{
                     blog={blog} 
                     key={blog._id}
                     addComment={this.props.addComment}
-                    deleteBlog={this.props.deleteBlog}/>
+                    deleteBlog={this.props.deleteBlog}
+                    editBlogPost={this.props.editBlogPost}/>
 
         })
         return(

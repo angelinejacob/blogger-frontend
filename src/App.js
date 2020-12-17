@@ -151,6 +151,24 @@ class App extends Component{
     })
   }
 
+  editBlogPost = (blog) => {
+    console.log(blog, "edit this blog from APP")
+    
+    // make API callout
+    axios({
+      method: 'put',
+      url: `http://localhost:3000/blogs/${this.state.userId}/${blog._id}`,
+      data: blog
+    })
+    .then((response) => {
+      // update state
+      this.getUpdatedUserInfo()
+    })
+    .catch((error) => {
+      console.log("error while updating blog post with content", error)
+    })
+  }
+
   render(){
     let userDetails = <h1>No Details</h1>
     if(Object.keys(this.state.currentUser).length === 0){
@@ -163,7 +181,8 @@ class App extends Component{
                       createNewBlog={this.createNewBlog} 
                       handleLike={this.handleLike}
                       addComment={this.addComment}
-                      deleteBlog={this.deleteBlog}/>
+                      deleteBlog={this.deleteBlog}
+                      editBlogPost={this.editBlogPost}/>
     }
     return(
       <>
