@@ -4,6 +4,7 @@ import NewUser from './users/createUser'
 import UserDetails from './users/userDetails'
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom'
+import FavoriteBlogs from './blogs/favoriteBlogs'
 
 class App extends Component{
   constructor(props){
@@ -184,6 +185,17 @@ class App extends Component{
                       deleteBlog={this.deleteBlog}
                       editBlogPost={this.editBlogPost}/>
     }
+
+    let favorites = <h1>No Favorites To Display</h1>
+    if(this.state.favoriteBlogs.length > 0){
+      favorites = <FavoriteBlogs
+                  user={this.state.currentUser} 
+                  blogs={this.state.favoriteBlogs} 
+                  handleLike={this.handleLike}
+                  addComment={this.addComment}
+                  deleteBlog={this.deleteBlog}
+                  editBlogPost={this.editBlogPost}/>
+    }
     return(
       <>
       <Link to="/newUser"> Register </Link> {"  |  "} 
@@ -194,6 +206,9 @@ class App extends Component{
       </Route>
       <Route exact path="/userDetails">
         {userDetails}
+      </Route>
+      <Route exact path="/favorites">
+        {favorites}
       </Route>
       </>
     )
