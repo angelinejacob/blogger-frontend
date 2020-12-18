@@ -11,7 +11,7 @@ class App extends Component{
   constructor(props){
     super()
     this.state = {
-      userId: '5fd8399b62640017b44144f4',
+      userId: '5fdbae9411debd001773561b',
       currentUser: {},
       allBlogs: [],
       blogs: [],
@@ -176,7 +176,7 @@ class App extends Component{
   }
 
   render(){
-    let userDetails = <h1>No Details</h1>
+    let userDetails = <h1 className="blogs-header">No Details</h1>
     if(Object.keys(this.state.currentUser).length === 0){
       // do nothing
     }else {
@@ -191,7 +191,7 @@ class App extends Component{
                       editBlogPost={this.editBlogPost}/>
     }
 
-    let favorites = <h1>No Favorites To Display</h1>
+    let favorites = <h1 className="blogs-header">No Favorites To Display</h1>
     if(this.state.favoriteBlogs.length > 0){
       favorites = <FavoriteBlogs
                   user={this.state.currentUser} 
@@ -201,7 +201,7 @@ class App extends Component{
                   deleteBlog={this.deleteBlog}
                   editBlogPost={this.editBlogPost}/>
     }
-    let all_blogs = <h1>No Blogs to Display</h1>
+    let all_blogs = <h1 className="blogs-header">No Blogs to Display</h1>
     if(this.state.allBlogs.length > 0){
       all_blogs = <AllBlogs
                   user={this.state.currentUser} 
