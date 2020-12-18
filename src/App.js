@@ -216,7 +216,7 @@ class App extends Component{
       <nav>
         <Link to="/">Home</Link>{"  |  "} 
         <Link to="/newUser"> Register </Link> {"  |  "} 
-        <Link to="/userDetails">My Settings</Link> {"  |  "} 
+        <Link to="/userDetails">{this.state.currentUser.name}</Link> {"  |  "} 
         <Link to="/favorites">My Favorites</Link> {"  |  "} 
         <Link to="/allblogs">All Blogs</Link>
       </nav>
