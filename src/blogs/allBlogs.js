@@ -57,8 +57,8 @@ class AllBlogs extends Component{
         }
         return(
             <>
-            <h1>All Blogs</h1>
-            <Form>
+            <h1 className="blogs-header">All Blogs</h1>
+            <Form id="search-bar">
                 <Label>Search Blogs</Label>
                 <Form.Input 
                 type="text"

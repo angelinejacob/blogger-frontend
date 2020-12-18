@@ -46,7 +46,7 @@ class ReadBlogModal extends Component{
             <Modal open={this.props.open}>
                 <Modal.Header>{this.props.blog.title}</Modal.Header>
                 <Modal.Content>
-                    <Modal.Description><h3>{this.props.blog.author.name}</h3> {this.props.blog.tags}</Modal.Description>
+                    <Modal.Description><h3>{this.props.blog.author.name}</h3> on {this.props.blog.tags}</Modal.Description>
                 </Modal.Content>
                 <Modal.Content>
                     {this.props.blog.content}
@@ -60,6 +60,8 @@ class ReadBlogModal extends Component{
                             <Comment.Text>{comment.content}</Comment.Text>
                         </Comment>
                     })}
+                    <br></br>
+                    <hr></hr>
                     <Form>
                         <Form.Input 
                         type="text"
@@ -67,7 +69,7 @@ class ReadBlogModal extends Component{
                         value={this.props.currentUser.name}
                         />
                         <Form.TextArea name="content" onChange={this.handleEditChange} value={this.state.comment}/>
-                        <Button onClick={this.addComment}>Add Comment</Button>
+                        <Button onClick={this.addComment} color="blue">Add Comment</Button>
                     </Form>
                     </Comment.Group>
                 </Modal.Content>

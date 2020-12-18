@@ -150,7 +150,7 @@ class UserDetails extends Component{
             <EditUserModal open={this.state.openEditModal} handleEditChange={this.handleEditChange} userToEdit={this.state.userToEdit} closeAndEdit={this.closeAndEdit} cancel={this.cancel}/>
             <CreateBlogModal open={this.state.openNewBlogModal} cancelPost={this.cancelPost} createPost={this.createPost} newBlog={this.state.newBlog} handleEditChange={this.handleEditChangeBlog}/>
 
-            <h1>My Blogs</h1>
+            <h1 className="blogs-header">My Blogs</h1>
             <div className="blog-container">
                 {blogs}
             </div>

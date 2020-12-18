@@ -5,7 +5,7 @@ class FavoriteBlogs extends Component{
     render(){
         return(
             <>
-            <h1>Favorite Blogs</h1>
+            <h1 className="blogs-header">Favorite Blogs</h1>
             <div className="blog-container">
             <BlogContainer 
                         handleLike={this.props.handleLike} 

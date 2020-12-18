@@ -75,9 +75,9 @@ class BlogCard extends Component{
         
         return(
             <>
-            <Card onClick={() => this.setState({ openBlog: true })} className="blog-card" fluid>
+            <Card onClick={() => this.setState({ openBlog: true })} className="blog-card" fluid style={{ border: "15px solid #76323f" }}>
                 <Card.Content>
-                    <Card.Header>{this.props.blog.title}</Card.Header>
+                    <Card.Header className="card-header" style={{ color: "#c09f80" }}>{this.props.blog.title}</Card.Header>
                     <Card.Meta>
                         {this.props.blog.tags}
                     </Card.Meta>

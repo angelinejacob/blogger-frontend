@@ -75,8 +75,8 @@ class NewUser extends Component{
     render(){
         return(
             <>
-            <Header>Register for Blogger!</Header>
-            <Form onSubmit={this.createUser}>
+            <h1 className="blogs-header">Register for Blogger!</h1>
+            <Form onSubmit={this.createUser} id="register-user">
                 <Label>Full Name</Label>
                 <Form.Input type="text" 
                             name="name"

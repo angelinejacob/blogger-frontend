@@ -59,6 +59,22 @@ nav a{
   font-family: 'Special Elite', cursive;
 }
 
+#user-details h1{
+  color: #76323f;
+  font-family: 'Special Elite', cursive;
+}
+
+.blogs-header{
+  color: #76323f;
+  font-family: 'Special Elite', cursive;
+}
+
+#bio {
+  font-family: 'Merriweather', serif;
+  font-size: 18px;
+  color: #565656;
+}
+
 #user-details{
   display: flex;
   flex-direction: column;
@@ -93,6 +109,21 @@ nav a{
 
 .blog-card{
   width: 300px;
+}
+
+.card-header{
+  color: #76323f;
+  font-family: 'Special Elite', cursive;
+}
+
+#register-user{
+  margin: auto auto;
+  width: 70%;
+}
+
+#search-bar{
+  width: 50%;
+  align-self: center;
 }
 
 
