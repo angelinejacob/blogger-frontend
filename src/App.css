@@ -37,6 +37,28 @@
   }
 }
 
+body{
+  background-color: #d7cec7;
+}
+
+nav{
+  background-color: #565656;
+  color: #d7cec7;
+}
+
+nav a{
+  color: #c09f80;
+}
+
+#welcome-header{
+  text-align: center;
+  margin-top: 200px;
+  margin-bottom: auto;
+  font-size: 70px;
+  color: #76323f;
+  font-family: 'Special Elite', cursive;
+}
+
 #user-details{
   display: flex;
   flex-direction: column;
@@ -65,7 +87,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70%;
+  margin: auto auto
 }
 
 .blog-card{

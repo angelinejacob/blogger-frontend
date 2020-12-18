@@ -65,8 +65,10 @@ class AllBlogs extends Component{
                 value={this.state.searchValue}
                 onChange={this.handleEditChange}/>
             </Form>
-
-            {blogContainer}
+            <br></br>
+            <div className="blog-container">
+                {blogContainer}
+            </div>
             
             </>
         )

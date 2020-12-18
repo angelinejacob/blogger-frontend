@@ -46,7 +46,7 @@ class ReadBlogModal extends Component{
             <Modal open={this.props.open}>
                 <Modal.Header>{this.props.blog.title}</Modal.Header>
                 <Modal.Content>
-                    <Modal.Description>{this.props.blog.tags} - {this.props.blog.author.name}</Modal.Description>
+                    <Modal.Description><h3>{this.props.blog.author.name}</h3> {this.props.blog.tags}</Modal.Description>
                 </Modal.Content>
                 <Modal.Content>
                     {this.props.blog.content}

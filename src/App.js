@@ -11,7 +11,7 @@ class App extends Component{
   constructor(props){
     super()
     this.state = {
-      userId: '5fdbae9411debd001773561b',
+      userId: '5fd8399b62640017b44144f4',
       currentUser: {},
       allBlogs: [],
       blogs: [],
@@ -213,11 +213,16 @@ class App extends Component{
     }
     return(
       <>
-      <Link to="/newUser"> Register </Link> {"  |  "} 
-      <Link to="/userDetails">My Settings</Link> {"  |  "} 
-      <Link to="/favorites">My Favorites</Link> {"  |  "} 
-      <Link to="/allblogs">All Blogs</Link>
-      <h1>Welcome to Blogger!</h1>
+      <nav>
+        <Link to="/">Home</Link>{"  |  "} 
+        <Link to="/newUser"> Register </Link> {"  |  "} 
+        <Link to="/userDetails">My Settings</Link> {"  |  "} 
+        <Link to="/favorites">My Favorites</Link> {"  |  "} 
+        <Link to="/allblogs">All Blogs</Link>
+      </nav>
+      <Route exact path="/">
+        <h1 id="welcome-header">Welcome to Blogger!</h1>
+      </Route>
       <Route exact path="/newUser">
         <NewUser/>
       </Route>

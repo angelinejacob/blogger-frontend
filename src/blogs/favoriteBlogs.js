@@ -6,6 +6,7 @@ class FavoriteBlogs extends Component{
         return(
             <>
             <h1>Favorite Blogs</h1>
+            <div className="blog-container">
             <BlogContainer 
                         handleLike={this.props.handleLike} 
                         currentUser={this.props.user} 
@@ -13,6 +14,7 @@ class FavoriteBlogs extends Component{
                         addComment={this.props.addComment}
                         deleteBlog={this.props.deleteBlog}
                         editBlogPost={this.props.editBlogPost}/>
+            </div>
             </>
         )
     }
